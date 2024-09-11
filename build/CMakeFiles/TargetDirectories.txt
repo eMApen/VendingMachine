@@ -1,0 +1,3 @@
+/home/xmax/Desktop/VendingMachine/build/CMakeFiles/VendingMachineProject.dir
+/home/xmax/Desktop/VendingMachine/build/CMakeFiles/edit_cache.dir
+/home/xmax/Desktop/VendingMachine/build/CMakeFiles/rebuild_cache.dir
