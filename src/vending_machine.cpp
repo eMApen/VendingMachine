@@ -1,44 +1,13 @@
-#include "vending_machine.h"
 #include <iostream>  // 需要包含这个头文件来使用std::cout
 #include <string>  // 引入string头文件
 #include <map>
 
-Product::Product():name("Null"),price(0.0),stock(0){}
-Product::Product(const std::string& name,double price,int stock)
-: name(name),price(price),stock(stock){}
-
-std::string Product::getName() const
-{
-    return name;
-}
-
-double Product::getPrice()const{
-    return price;
-}
-
-int Product::getStock()const
-{
-    return stock;
-}
-
-void Product::dispense()
-{
-    std::cout << "Select Product: "<< getName() << ", Stock: " << getStock() << '.' << std::endl;
-    if(stock > 0)
-    {
-        std::cout << "Successful dispense "<< getName() << '.' << std::endl;
-        stock --;
-    }
-    else
-    {
-        std::cout << "Failed to dispense "<< getName() << '.'  << std::endl;
-    }
-    
-}
-
+#include "product.h"
+#include "vending_machine.h"
 
 VendingMachine::VendingMachine(const std::string& location)
 : location(location){}
+
 
 std::string VendingMachine::getLocation() const
 {
@@ -113,57 +82,4 @@ double VendingMachine::returnChange()
     double change = currentBalance;
     currentBalance = 0;
     return change;
-}
-
-User::User(const std::string& name, double balance)
-: name(name),balance(balance){}
-
-std::string User::getName() const
-{
-    return name;
-}
-
-double User::getBalance() const
-{
-    return balance;
-}
-
-void User::depositMoney(VendingMachine& machine, double amount)
-{
-    if(balance >= amount)
-    {
-        balance -= amount;// Deduct user's balance
-        machine.depositMoney(amount); // Deposit money in machine
-        std::cout << name << " deposited "<< amount <<
-                             " into the vending machine." << std::endl;
-    }
-    else
-    {
-        std::cout << "Insufficient balance." << std::endl;
-    }
-    
-}
-
-void User::purchaseProduct(VendingMachine& machine, uint productId)
-{
-    //Viewing and Selecting Products
-    Product& wantedproduct = machine.getProductMap()[productId];
-    std::cout << "At " << machine.getLocation() <<", "
-            << name << " want to buy " << wantedproduct.getName()<<std::endl;
-    // Check if stock 
-    if(wantedproduct.getStock() > 0)
-    {
-        //Waiting for machine to push out product
-        machine.sellProduct(productId);
-    }
-    else
-    {
-        std::cout << "Insufficient stock!" << std::endl;
-    }
-    
-}
-
-void User::addBalance(double amount)
-{
-    balance += amount;
 }

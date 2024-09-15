@@ -1,9 +1,11 @@
 #include "vending_machine.h"
+#include "product.h"
+#include "user.h"
 
 int main()
 {
     // Create a vending machine
-    VendingMachine machine("First Veding Machine Ever");
+    VendingMachine VM1("First Veding Machine Ever");
 
     
     Product cola("Cola", 3.5, 10);
@@ -11,15 +13,15 @@ int main()
     Product gum("Gum",4,10);
 
     // Adding products to the machine 
-    machine.addProduct(cola,1);
-    machine.addProduct(chip,0);
-    machine.addProduct(gum,4);
+    VM1.addProduct(cola,1);
+    VM1.addProduct(chip,0);
+    VM1.addProduct(gum,2);
     
     // Create an User
     User ruby("Ruby",100);
 
-    ruby.depositMoney(machine,20);
-    ruby.purchaseProduct(machine,0);
+    ruby.depositMoney(VM1,20);
+    ruby.purchaseProduct(VM1,1);
 
 
 }

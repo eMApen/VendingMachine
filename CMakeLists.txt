@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(VendingMachineProject 
                 src/main.cpp 
+                src/product.cpp
                 src/vending_machine.cpp 
+                src/user.cpp
                 )
 
 

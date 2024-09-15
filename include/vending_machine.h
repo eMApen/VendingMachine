@@ -3,35 +3,30 @@
 
 #include <string>  // 引入string头文件
 #include <map>
+#include "machine.h"
 
-class Product{
-  public:
-	Product();
-	Product(const std::string& name, double price, int stock);
 
-    std::string getName() const;
-    double getPrice() const;
-    int getStock() const; //
-
-    void dispense(); //send
-
-  private:
-	std::string name;
-    double price;
-    int stock;
-
-};
-
-class VendingMachine {
+class Product;
+class VendingMachine : public Machine{
   public:
     VendingMachine(const std::string& location);  // 使用std::string标识位置
     
+	void reset() override
+	{
+		// Throw away all products
+		products.clear();
+		// Clear all the money
+		currentBalance = 0;
+		// Clear all totalSales
+		totalSales = 0;
+	};
+
     std::string getLocation() const;
     double getTotalSales() const;
     double getCurrentBalance() const;
     std::map<int, Product> getProductMap() const;
 
-	void addProduct(const Product& addedproduct,uint productID);
+    void addProduct(const Product& addedproduct,uint productID);
     void sellProduct(uint productID);
     void depositMoney(double amount);
     double returnChange();
@@ -43,19 +38,5 @@ class VendingMachine {
     std::map<int, Product> products;
 };
 
-class User {
-  public:
-	User(const std::string& name, double balance);
-
-    std::string name;
-    double balance;
-	
-	std::string getName() const;
-	double getBalance() const;
-
-	void depositMoney(VendingMachine& machine, double amount);
-	void purchaseProduct(VendingMachine& machine, uint productId);
-	void addBalance(double amount);
-};
 
 #endif
