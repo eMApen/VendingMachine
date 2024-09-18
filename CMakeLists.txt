@@ -8,6 +8,7 @@ add_executable(VendingMachineProject
                 src/product.cpp
                 src/vending_machine.cpp 
                 src/user.cpp
+                src/discount_vm.cpp
                 )
 
 
